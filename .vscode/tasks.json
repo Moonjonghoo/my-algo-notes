@@ -1,0 +1,51 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "🧩 New Problem 생성",
+      "type": "shell",
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/scripts/new-problem.js",
+        "${input:site}",
+        "${input:slug}"
+      ],
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "📌 문제 상태 변경",
+      "type": "shell",
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/scripts/update-status.js",
+        "${input:site}",
+        "${input:slug}",
+        "${input:status}"
+      ],
+      "problemMatcher": [],
+      "group": "build"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "site",
+      "type": "pickString",
+      "description": "문제 출처 사이트는?",
+      "options": ["leetcode", "programmers"],
+      "default": "leetcode"
+    },
+    {
+      "id": "slug",
+      "type": "promptString",
+      "description": "문제 슬러그 입력 (예: 139-word-break)"
+    },
+    {
+      "id": "status",
+      "type": "pickString",
+      "description": "변경할 상태는?",
+      "options": ["todo", "in-progress", "done"],
+      "default": "in-progress"
+    }
+  ]
+}
